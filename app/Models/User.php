@@ -3,6 +3,8 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -42,4 +44,18 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /*
+        ATTRIBUTES
+    */
+
+   public function getUserTypeAttribute() { return $this->attributes['user_type'];}
+   public function getFullnameAttribute() { return $this->attributes['name'];}
+   public function getUserIdAttribute() { return $this->attributes['id'];}
+
+    // RELATIONSHIPS
+    public function profile()
+    {
+        return $this->hasOne(Profile::class);
+    }
 }

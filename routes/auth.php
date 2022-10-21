@@ -9,6 +9,7 @@ use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
 use App\Http\Controllers\Company\CompleteCompanyProfileController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\RegisterCompanyController;
 use Illuminate\Support\Facades\Route;
 
@@ -38,9 +39,10 @@ Route::middleware('auth')->group(function() {
 
 // DASHBOARD ROUTES
 Route::middleware('auth')->group(function(){
-    Route::get('/projects', function () { return view('dashboard.projects');})->name('projects');
-    Route::get('/estimates', function () { return view('dashboard.estimates');})->name('estimates');
-    Route::get('/invoice', function () { return view('dashboard.invoices');})->name('invoices');
+    Route::get('/dashboard', [DashboardController::class, 'home'])->name('dashboard');
+    Route::get('/projects', [DashboardController::class, 'projects'])->name('projects');
+    Route::get('/estimates',[DashboardController::class, 'estimates'])->name('estimates');
+    Route::get('/invoice', [DashboardController::class, 'invoices'])->name('invoices');
 });
 
 
