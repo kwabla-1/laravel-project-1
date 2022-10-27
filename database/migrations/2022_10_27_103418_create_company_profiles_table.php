@@ -28,14 +28,11 @@ return new class extends Migration
             $table->string('permanent_workers');
             $table->string('working_days');
             $table->date('year_established');
-            $table->date('license_img_path');
-            $table->date('certificate_img_path');
-            $table->date('company_size');
+            $table->string('license_img_path');
+            $table->string('certificate_img_path');
+            $table->string('company_size');
             $table->date('opening_closing_time');
-            $table->date('summary_business_activities');
-            $table->foreignId('user_id')->constrained('users')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreignId('compay_profiles_id')->constrained('company_profiles')->onUpdate('cascade')->onDelete('cascade');
-
+            $table->text('summary_business_activities');
             $table->timestamps();
         });
     }

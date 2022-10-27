@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -17,6 +18,7 @@ class DashboardController extends Controller
             return view('dashboard.blank')->with('viewData',$viewData);
         }
 
+        $viewData["user"] = User::FindOrFail(auth()->id());
         return view('dashboard')->with("viewData", $viewData);
     }
 

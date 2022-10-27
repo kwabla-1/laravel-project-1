@@ -14,6 +14,7 @@ class CompleteCompanyProfileController extends Controller
 
     public function store(Request $request)
     {
-        return null;
+        
+        return $request()->all();
     }
 }

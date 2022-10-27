@@ -10,6 +10,7 @@ use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
 use App\Http\Controllers\Company\CompleteCompanyProfileController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\Individual\CompleteIndividualProfileController;
 use App\Http\Controllers\RegisterCompanyController;
 use Illuminate\Support\Facades\Route;
 
@@ -29,11 +30,11 @@ Route::middleware('guest')->group(function(){
 Route::middleware('auth')->group(function() {
     //GET REQUEST
     Route::get('/complete_profille/company', [CompleteCompanyProfileController::class, 'show'])->name('companyRegister');
-    Route::get('/complete_profille/individual', [RegisteredUserController::class, 'create'])->name('individualRegister');
+    Route::get('/complete_profille/individual', [CompleteIndividualProfileController::class, 'show'])->name('individualRegister');
 
     //POST REQUEST
-    Route::post('complete_profile/company', [CompleteCompanyProfileController::class, 'store']);
-    Route::post('complete_profile/individual', [RegisteredUserController::class, 'store']);
+    Route::post('complete_profile/company', [CompleteCompanyProfileController::class, 'store'])->name('companyRegisterStore');
+    Route::post('complete_profile/individual', [CompleteIndividualProfileController::class, 'store'])->name('individualRegisterStore');
 });
 
 

@@ -52,6 +52,7 @@ class User extends Authenticatable
    public function getUserTypeAttribute() { return $this->attributes['user_type'];}
    public function getFullnameAttribute() { return $this->attributes['name'];}
    public function getUserIdAttribute() { return $this->attributes['id'];}
+   public function getUserEmailAttribute() { return $this->attributes['email'];}
 
     // RELATIONSHIPS
     public function profile()

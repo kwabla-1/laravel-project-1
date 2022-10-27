@@ -15,9 +15,16 @@ return new class extends Migration
     {
         Schema::create('profiles', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->nullable()->constrained('users')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreignId('company_id')->nullable()->constrained('company_profiles')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreignId('individual_id')->nullable()->constrained('individual_profiles')->onUpdate('cascade')->onDelete('cascade');
+
+            $table->unsignedBigInteger('user_id')->nullable();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+
+            // $table->unsignedBigInteger('company_id')->nullable();
+            // $table->foreign('company_id')->references('id')->on('company_profiles')->onDelete('cascade');
+
+            // $table->unsignedBigInteger('individual_id')->nullable();
+            // $table->foreign('individual_id')->references('id')->on('individual_profiles')->onDelete('cascade');
+
             $table->timestamps();
         });
     }

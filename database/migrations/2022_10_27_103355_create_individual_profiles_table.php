@@ -21,15 +21,11 @@ return new class extends Migration
             $table->string('country');
             $table->string('location');
             $table->string('address');
-            $table->string('city');
             $table->string('school_name')->nullable();
             $table->date('school_completion_year')->nullable();
             $table->string('profession');
             $table->string('certificates')->nullable();
-            $table->string('experience_level');
-            $table->string('languages');
-            $table->foreignId('user_id')->constrained('users')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreignId('individual_profiles_id')->constrained('individual_profiles')->onUpdate('cascade')->onDelete('cascade');
+            $table->string('licence')->nullable();
             $table->timestamps();
         });
     }
