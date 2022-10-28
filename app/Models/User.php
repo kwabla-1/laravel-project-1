@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\DB;
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
@@ -53,6 +54,16 @@ class User extends Authenticatable
    public function getFullnameAttribute() { return $this->attributes['name'];}
    public function getUserIdAttribute() { return $this->attributes['id'];}
    public function getUserEmailAttribute() { return $this->attributes['email'];}
+
+   public function getUserRocordsAttribute($userID)
+   {
+        return DB::table('users')
+        ->join('profiles', 'users.id', '=', 'profiles.user_id')
+        ->join('individual_profiles', 'profiles.id', '=', 'users.id')
+        ->where('users.id', '=', $userID )
+        ->select('users.*','individual_profiles.*')
+        ->get();
+   }
 
     // RELATIONSHIPS
     public function profile()

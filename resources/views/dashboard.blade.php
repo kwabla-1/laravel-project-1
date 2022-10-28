@@ -10,8 +10,13 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
                     @php
-                        var_dump($viewData['user']);
+                        // var_dump($viewData['user']);
+                        if (isset($viewData['user_record'])) {
+                            print_r($viewData['user_record']);
+                        }
                     @endphp
+
+                    
                 </div>
             </div>
         </div>
