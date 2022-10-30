@@ -26,7 +26,7 @@ class DashboardController extends Controller
             ->join('profiles', 'users.id', '=', 'profiles.user_id')
             ->join('company_profiles', 'profiles.id', '=', 'users.id')
             ->where('users.id', '=', $user_id )
-            ->select('users.*','company_profile.*')
+            ->select('users.*','company_profiles.*')
             ->get();
 
             $viewData['user_record'] = $company_record->toArray();

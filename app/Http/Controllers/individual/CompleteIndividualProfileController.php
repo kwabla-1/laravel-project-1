@@ -25,7 +25,7 @@ class CompleteIndividualProfileController extends Controller
         //retrive the validate request
 
         // return $request->validated();
-       $validated_input = $request->validated();
+        $validated_input = $request->validated();
        $profileImgName = null;
        $certName = null;
        
@@ -47,8 +47,8 @@ class CompleteIndividualProfileController extends Controller
         $individualProfile->mobile_number = $validated_input['mobile1'];
         $individualProfile->mobile_number1 = $validated_input['mobile2'];
         $individualProfile->date_of_birth = $validated_input['date_of_birth'];
-        $individualProfile->profile_picture = $validated_input['profile_picture'];
-        $individualProfile->about_me = $profileImgName;
+        $individualProfile->profile_picture = $profileImgName;
+        $individualProfile->about_me = $validated_input['myself'];
         $individualProfile->country = $validated_input['country'];
         $individualProfile->location = $validated_input['location'];
         $individualProfile->address = $validated_input['address'];

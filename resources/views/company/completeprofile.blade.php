@@ -11,15 +11,24 @@
      <h1 class="text-3xl font-bold underline text-center mt-6">Please complete fill in all inputs for your company</h1>
 
      <div class="">
-          <form action="{{route('companyRegisterStore')}}" method="POST" enctype="application/x-www-form-urlencoded">
+          <form action="{{route('companyRegisterStore')}}" method="POST" enctype="multipart/form-data">
                @csrf
+               @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
                <div class=" w-1/2 mx-auto mt-8 p-6">
                     <div class="flex flex-wrap -mx-3 mb-6">
                          <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                            <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
                              Company Name
                            </label>
-                           <input name="company_name" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" type="text" placeholder="Jacob And Co">
+                           <input name="company_name" value="{{$viewData['company_name']}}" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" type="text" placeholder="Jacob And Co">
                            {{-- <p class="text-red-500 text-xs italic">Please fill out this field.</p> --}}
                          </div>
                          <div class="w-full md:w-1/2 px-3">
@@ -74,8 +83,15 @@
                            <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-last-name">
                              Corperate Email
                            </label>
-                           <input name="comperate_email" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-last-name" type="text" placeholder="company@gmail.com">
+                           <input name="comperate_email" value="{{$viewData['company_email']}}" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-last-name" type="text" placeholder="company@gmail.com">
                          </div>
+
+                         <div class="w-full md:w-1/2 px-3">
+                          <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+                            Company Picture
+                          </label>
+                          <input name="company_profile_picture" value="{{$viewData['company_email']}}" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-last-name" type="file" placeholder="company@gmail.com">
+                        </div>
                     </div>
 
                     {{-- company service --}}
@@ -115,11 +131,11 @@
                              Number Of Workers
                            </label>
                            <select name="numberofworkers" id="" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
-                              <option value="">1 to 5</option>
-                              <option value="">10 to 30</option>
-                              <option value="">40 to 60 </option>
-                              <option value="">70 to 100</option>
-                              <option value="">More than 100</option>
+                              <option value="1-5">1 to 5</option>
+                              <option value="10-30">10 to 30</option>
+                              <option value="49-60">40 to 60 </option>
+                              <option value="70-100">70 to 100</option>
+                              <option value="100">More than 100</option>
                            </select>
                          </div>
                     </div>
@@ -129,11 +145,11 @@
                            <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
                              Company Size
                            </label>
-                            <select name="company_name" id="" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
-                                   <option value="">Small</option>
-                                   <option value="">Medium</option>
-                                   <option value="">Larget</option>
-                                   <option value="">Gigabit Company</option>
+                            <select name="company_size" id="" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
+                                   <option value="small">Small</option>
+                                   <option value="medium">Medium</option>
+                                   <option value="large">Larget</option>
+                                   <option value="mega">Gigabit Company</option>
                               </select>
                          </div>
                          <div class="w-full md:w-1/2 px-3">
@@ -141,10 +157,10 @@
                               Working days
                            </label>
                            <select name="working_day" id="" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
-                              <option value="">Monday to Friday</option>
-                              <option value="">Monday to Saturday</option>
-                              <option value="">Everyday</option>
-                              <option value="">Other</option>
+                              <option value="mon-fri">Monday to Friday</option>
+                              <option value="mon-sat">Monday to Saturday</option>
+                              <option value="every">Everyday</option>
+                              <option value="other">Other</option>
                            </select>
                          </div>
                     </div>

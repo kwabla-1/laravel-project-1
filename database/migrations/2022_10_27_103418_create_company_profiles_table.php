@@ -24,15 +24,10 @@ return new class extends Migration
             $table->string('corperate_email');
             $table->string('company_services');
             $table->string('type_of_businesss');
-            $table->string('years_in_business');
             $table->string('permanent_workers');
             $table->string('working_days');
             $table->date('year_established');
-            $table->string('license_img_path');
-            $table->string('certificate_img_path');
             $table->string('company_size');
-            $table->date('opening_closing_time');
-            $table->text('summary_business_activities');
             $table->timestamps();
         });
     }
