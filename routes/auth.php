@@ -11,6 +11,7 @@ use App\Http\Controllers\Auth\VerifyEmailController;
 use App\Http\Controllers\Company\CompleteCompanyProfileController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Individual\CompleteIndividualProfileController;
+use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\RegisterCompanyController;
 use Illuminate\Support\Facades\Route;
 
@@ -46,18 +47,20 @@ Route::middleware('auth')->group(function(){
     Route::get('/invoice', [DashboardController::class, 'invoices'])->name('invoices');
 });
 
+//PROJECT ROUTES
+Route::controller(ProjectController::class)->group(function(){
+    Route::get("user/{user}/projects/create", 'show')->name('create_project');
+    Route::get("user/{user}/projects/store", 'store')->name('store_project');
+    Route::get("user/{user}/projects/update", 'store')->name('update_project');
+    Route::get("user/{user}/projects/delete", 'store')->name('delete_project');
+});
 
 
 
 
 
 
-
-
-
-
-
-
+// AUTHENTICATION ROUTES
 Route::middleware('guest')->group(function () {
     Route::get('login', [AuthenticatedSessionController::class, 'create'])->name('login');
     Route::post('login', [AuthenticatedSessionController::class, 'store']);

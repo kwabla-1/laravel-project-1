@@ -48,8 +48,13 @@ class DashboardController extends Controller
     }
 
     public function projects()
-    {
-        return view('dashboard.projects');
+    {   
+        //get all projects associated with the login user
+
+        $viewData = [];
+        $viewData['user_projects'] = Auth::user()->projects()->exists() ? Auth::user()->projects()->get() : null;
+        
+        return view('dashboard.projects')->with("viewData", $viewData);
     }
 
     public function estimates()

@@ -23,4 +23,6 @@ class Profile extends Model
     {
         return $this->hasMany(CompanyProfile::class);
     }
+
+    
 }
