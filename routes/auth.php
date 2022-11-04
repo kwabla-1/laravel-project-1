@@ -47,12 +47,14 @@ Route::middleware('auth')->group(function(){
     Route::get('/invoice', [DashboardController::class, 'invoices'])->name('invoices');
 });
 
-//PROJECT ROUTES
-Route::controller(ProjectController::class)->group(function(){
-    Route::get("user/{user}/projects/create", 'show')->name('create_project');
-    Route::get("user/{user}/projects/store", 'store')->name('store_project');
-    Route::get("user/{user}/projects/update", 'store')->name('update_project');
-    Route::get("user/{user}/projects/delete", 'store')->name('delete_project');
+//PROJECT ROUTES must be authicated, has fully completed profile;
+Route::middleware('auth')->group(function(){
+    Route::controller(ProjectController::class)->group(function(){
+        Route::get("user/{user}/projects/create", 'show')->name('create_project');
+        Route::post("user/projects/store", 'store')->name('store_project');
+        Route::put("user/{user}/projects/update", 'store')->name('update_project');
+        Route::get("user/{user}/projects/delete", 'store')->name('delete_project');
+    });
 });
 
 
