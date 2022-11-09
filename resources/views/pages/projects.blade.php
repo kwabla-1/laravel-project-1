@@ -10,12 +10,22 @@
 <body>
      <div class="max-w-2xl mx-auto  p-16">
 
-          <form method="POST" action="{{route('store_project')}}">
+          <form method="POST" action="{{route('store_project')}}" enctype="multipart/form-data">
                @csrf
+               @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+
                <div class="grid gap-6 mb-6 lg:grid-cols-2">
                     <div>
                          <label for="first_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Project name</label>
-                         <input type="text" id="first_name" name="project_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Tilly's Cabinent" required>
+                         <input type="text" id="first_name" name="project_name" value="{{old('project_name')}}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Tilly's Cabinent" required>
                     </div>
                     <div>
                          <label for="last_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">client_name</label>
@@ -49,11 +59,11 @@
                </div> 
                <div class="mb-6">
                     <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Images</label>
-                    <input type="file" id="password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="project_images" required>
+                    <input type="file" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="project_images[]" accept="images/*" multiple required>
                </div> 
                <div class="mb-6">
-                    <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Videos</label>
-                    <input type="file" id="password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="project_videos" required>
+                    <label  class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Videos</label>
+                    <input type="file"  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="project_videos[]" accept="video/*" multiple>
                </div> 
                {{-- <div class="mb-6">
                     <label for="confirm_password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">project_size	</label>
