@@ -51,6 +51,9 @@ Route::middleware('auth')->group(function(){
 Route::middleware('auth')->group(function(){
     Route::controller(ProjectController::class)->group(function(){
         Route::get("user/{user}/projects/create", 'show')->name('create_project');
+        Route::get("user/{user}/projects/{project}/view", 'viewProject')->name('viewProject');
+        Route::get("user/projects/edit/{project}", 'editProject')->name('editProject');
+
         Route::post("user/projects/store", 'store')->name('store_project');
         Route::put("user/{user}/projects/update", 'store')->name('update_project');
         Route::get("user/{user}/projects/delete", 'store')->name('delete_project');

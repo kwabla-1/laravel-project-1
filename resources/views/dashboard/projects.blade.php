@@ -56,13 +56,16 @@
                                             Project Title
                                         </th>
                                         <th scope="col" class="py-3 px-6">
-                                            Budget
+                                            Start Date
                                         </th>
                                         <th scope="col" class="py-3 px-6">
-                                            Commence
+                                            End Date
                                         </th>
                                         <th scope="col" class="py-3 px-6">
-                                            Status
+                                            location
+                                        </th>
+                                        <th scope="col" class="py-3 px-6">
+                                            Client
                                         </th>
                                         <th scope="col" class="py-3 px-6">
                                             Action
@@ -71,7 +74,35 @@
                                 </thead>
                                 <tbody>
                                     @if ($viewData['user_projects'])
-                                        <tr class="bg-blue-500 border-b border-blue-400">
+                                        @foreach ($viewData['user_projects'] as $project)
+                                            <tr class="bg-blue-500 border-b border-blue-400">
+                                                <td class="py-4 px-6 font-medium text-blue-50 whitespace-nowrap dark:text-blue-100">
+                                                   {{ $project->id;}}
+                                                </td>
+                                                <td class="py-4 px-6 font-medium text-blue-50 whitespace-nowrap dark:text-blue-100">
+                                                    {{ $project->project_name;}}
+                                                 </td>
+                                                 <td class="py-4 px-6 font-medium text-blue-50 whitespace-nowrap dark:text-blue-100">
+                                                    {{ $project->start_date;}}
+                                                 </td>
+                                                 <td class="py-4 px-6 font-medium text-blue-50 whitespace-nowrap dark:text-blue-100">
+                                                    {{ $project->end_date;}}
+                                                 </td>
+                                                 <td class="py-4 px-6 font-medium text-blue-50 whitespace-nowrap dark:text-blue-100">
+                                                    {{ $project->location;}}
+                                                 </td>
+                                                 <td class="py-4 px-6 font-medium text-blue-50 whitespace-nowrap dark:text-blue-100">
+                                                    {{ $project->client_name;}}
+                                                 </td>
+                                                <td>
+                                                    <a href="{{ route('viewProject', ['user' => Auth::id(), 'project' => $project->id] )  }}">view</a>
+                                                    <a href="{{ route('editProject', ['project' => $project->id]) }}">Edit</a>
+                                                    
+                                                </td>
+                                            </tr>
+                                        @endforeach
+
+                                        {{-- <tr class="bg-blue-500 border-b border-blue-400">
                                             <th scope="row" class="py-4 px-6 font-medium text-blue-50 whitespace-nowrap dark:text-blue-100">
                                                 #12f232
                                             </th>
@@ -87,9 +118,11 @@
                                             <td class="py-4 px-6">
                                                 <a href="#" class="font-medium text-white hover:underline">Uncompleted</a>
                                             </td>
-                                        </tr>
+                                        </tr> --}}
                                     @else
-                                        
+                                        <tr >
+                                            <a href="#" class="text-lg text-center">Create new project here</a>
+                                        </tr>
                                     @endif
 
                                   
@@ -101,9 +134,7 @@
                             
                         </div>
 
-                        <tr >
-                            <a href="#" class="text-lg text-center">Create new project here</a>
-                        </tr>
+                       
                         @php
                              
                             

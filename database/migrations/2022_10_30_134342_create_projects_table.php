@@ -21,7 +21,6 @@ return new class extends Migration
             $table->date('end_date');
             $table->text('project_description');
             $table->string('comments')->nullable();
-            $table->string('project_photos_path');
             $table->string('location');
             $table->string('client_name')->nullable();
             $table->string('project_size')->default('normal');

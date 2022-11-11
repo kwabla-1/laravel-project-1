@@ -53,7 +53,9 @@ class DashboardController extends Controller
 
         $viewData = [];
         $viewData['user_projects'] = Auth::user()->projects()->exists() ? Auth::user()->projects()->get() : null;
-        
+
+        // return $viewData['user_projects'];
+
         return view('dashboard.projects')->with("viewData", $viewData);
     }
 

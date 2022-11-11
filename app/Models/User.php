@@ -75,4 +75,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Project::class);
     }
+
+    public function estimates()
+    {
+        return $this->hasMany(Estimate::class);
+    }
 }
