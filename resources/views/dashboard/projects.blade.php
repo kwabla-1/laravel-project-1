@@ -133,14 +133,6 @@
                             </table>
                             
                         </div>
-
-                       
-                        @php
-                             
-                            
-                            
-                        @endphp
-                    
                 </div>
             </div>
         </div>

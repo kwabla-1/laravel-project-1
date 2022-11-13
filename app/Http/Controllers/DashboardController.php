@@ -61,7 +61,10 @@ class DashboardController extends Controller
 
     public function estimates()
     {
-       return view('dashboard.estimates');
+        $viewData = [];
+        $viewData['user_estimates'] = DB::table('estimates')->where('user_id','=', auth()->id() )->get();
+       
+        return view('dashboard.estimates')->with(['viewData' => $viewData]);
     }
 
     public function invoices()

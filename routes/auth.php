@@ -10,6 +10,7 @@ use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
 use App\Http\Controllers\Company\CompleteCompanyProfileController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\EstimateController;
 use App\Http\Controllers\Individual\CompleteIndividualProfileController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\RegisterCompanyController;
@@ -57,6 +58,12 @@ Route::middleware('auth')->group(function(){
         Route::post("user/projects/store", 'store')->name('store_project');
         Route::put("user/{user}/projects/update", 'store')->name('update_project');
         Route::get("user/{user}/projects/delete", 'store')->name('delete_project');
+    });
+});
+
+Route::middleware('auth')->group(function(){
+    Route::controller(EstimateController::class)->group(function(){
+        // Route::get("user/estimates/", 'show')->name('show_estimate');
     });
 });
 

@@ -19,17 +19,30 @@ return new class extends Migration
             $table->string('estimate_number')->nullable();
             
             // reciver
-            $table->foreignId('user_id')->constrained('users');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->string('receiver_name');
             $table->string('receiver_email');
             $table->string('receiver_number');
-            $table->string('address_address')->nullable();
+            $table->string('reciver_address')->nullable();
             //description
+            $table->string('currency')->default('GH');
+
+            $table->string('discount_type')->nullable();
+            $table->integer('discount_amount');
+
+            //tax
+            $table->string('tax_type')->nullable();
+            $table->string('tax_label')->nullable();
+
+
+
             $table->text('item_description');
             $table->string('rate');
             $table->integer('quantity');
             $table->text('addition_details')->nullable();
             $table->text('notes')->nullable();
+
+            $table->string('status')->default('pending');
 
             $table->timestamps();
         });
